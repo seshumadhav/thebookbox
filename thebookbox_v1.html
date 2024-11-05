@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>The Book Box</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/MpjcHWt/TBB-Academy-Favicon-300x300-1.png">
+  <style>
+        body {
+            font-family: cnn_sans_display, "HelveticaNeue-Light", "Helvetica Neue",Helvetica,Arial,Utkal,sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Style for the cover image */
+        .cover-image {
+            width: 100px; /* Set a fixed width */
+            height: 100px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
+        }
+
+                .container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+        .form-link {
+            font-size: 16px;
+            color: blue; /* You can change the link color */
+            text-decoration: underline;
+        }
+  </style>
+</head>
+<body>
+  <h1>Welcome to The Book Box</h1>
+  <div class="container">
+    If you want to borrow a book, Pls submit
+    <pre> </pre><a href="https://forms.gle/pyM2FgBjWj2F9EVg7" target="_blank">this form</a>
+  </div>
+  <table border="1"></table>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>S.no</th>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Language</th>
+        <th>Author</th>
+        <th>Genres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><img src="https://m.media-amazon.com/images/I/71ulMAPOvXL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Daily Stoic</td>
+        <td>English</td>
+        <td>Ryan Holiday, Stephen Hanselman</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1405868167i/662.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Atlas Shrugged</td>
+        <td>English</td>
+        <td>Ayn Rand</td>
+        <td>Philosophical, Adventure, Romance, Science Fiction</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><img src="https://m.media-amazon.com/images/I/815ocIr9qWL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Radical Acceptance: Embracing Your Life With the Heart of a Buddha</td>
+        <td>English</td>
+        <td>Tara Brach</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><img src="https://m.media-amazon.com/images/I/81KIGlHCfpL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Manhunt: The Ten-Year Search for Bin Laden - from 9-11 to Abbottabad</td>
+        <td>English</td>
+        <td>Peter L. Bergen, Mark Deakins</td>
+        <td>Fiction, Horror, Science, Apocalyptic</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><img src="https://m.media-amazon.com/images/I/71s3F6OMm8L._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Fred Factor: How Passion in Your Work and Life Can Turn the Ordinary into the Extraordinary</td>
+        <td>English</td>
+        <td>Mark Sanborn and John C. Maxwell</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><img src="https://m.media-amazon.com/images/I/718j0OG0SgL._SL1500_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>How to Argue and Win Every Time</td>
+        <td>English</td>
+        <td>Gerry Spence</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><img src="https://m.media-amazon.com/images/I/61bHtvQAsXL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Elements of Influence: The Art of Getting Others to Follow Your Lead</td>
+        <td>English</td>
+        <td>Terry R.Bacon</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><img src="https://m.media-amazon.com/images/I/61tHUIggQaL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Nonviolent Communication: A Language of Life: Life-Changing Tools for Healthy Relationships (Nonviolent Communication Guides)</td>
+        <td>English</td>
+        <td>Marshall B. Rosenberg</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><img src="https://m.media-amazon.com/images/I/61LxQxMVa7L._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Game Change: Obama and the Clintons, McCain and Palin, and the Race of a Lifetime</td>
+        <td>English</td>
+        <td>John Heilemann and Mark Halperin</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><img src="https://m.media-amazon.com/images/I/71lJ5i8p+bL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Just Listen: Discover the Secret to Getting Through to Absolutely Anyone</td>
+        <td>English</td>
+        <td>Mark Goulston</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><img src="https://m.media-amazon.com/images/I/71uZIWQx+tL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Grit: The Power of Passion and Perseverance</td>
+        <td>English</td>
+        <td>Angela Duckworth</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td><img src="https://m.media-amazon.com/images/I/71F4+7rk2eL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones</td>
+        <td>English</td>
+        <td>James Clear</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><img src="https://m.media-amazon.com/images/I/71X49rkdj1L._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Art of Thinking Clearly</td>
+        <td>English</td>
+        <td>Rolf Dobelli</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td><img src="https://m.media-amazon.com/images/I/81CeBeTmw8L._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Better Than Before: What I Learned About Making and Breaking Habits--to Sleep More, Quit Sugar, Procrastinate Less, and Generally Build a Happier Life</td>
+        <td>English</td>
+        <td>Gretchen Rubin</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td><img src="https://m.media-amazon.com/images/I/51p5r-VNR2L._AC_UF1000,1000_QL80_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Nonviolent Communication: A Language of Life</td>
+        <td>English</td>
+        <td>Marshall B. Rosenberg</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td><img src="https://m.media-amazon.com/images/I/810yZQefYzL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Thinking in Systems: A Primer</td>
+        <td>English</td>
+        <td>Donella H. Meadows</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td><img src="https://m.media-amazon.com/images/I/81qvmSdwQiL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Happiness Project</td>
+        <td>English</td>
+        <td>Gretchen Rubin</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td><img src="https://m.media-amazon.com/images/I/815ocIr9qWL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Radical Acceptance: Embracing Your Life With the Heart of a Buddha</td>
+        <td>English</td>
+        <td>Tara Brach</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1564338047i/13260184.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The 4 Disciplines of Execution: Achieving Your Wildly Important Goals</td>
+        <td>English</td>
+        <td>Chris McChesney</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td><img src="https://m.media-amazon.com/images/I/61tllT7LU8L._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>NurtureShock: New Thinking About Children</td>
+        <td>English</td>
+        <td>Po Bronson, Ashley Merryman</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td><img src="https://m.media-amazon.com/images/I/61MyyZ3V5QL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>HBR Guide to Dealing with Conflict</td>
+        <td>English</td>
+        <td>Amy Gallo</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td><img src="https://m.media-amazon.com/images/I/71GhNB1ZhIL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Broker: A Novel</td>
+        <td>English</td>
+        <td>John Grisham</td>
+        <td>Fiction, Suspense</td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td><img src="https://m.media-amazon.com/images/I/41xrwn3RFdL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Serving Leader: Five Powerful Actions that Will Transform Your Team, Your Business, and Your Community by Ken Jennings John Stahl-Wert(2004-10-10)</td>
+        <td>English</td>
+        <td>Ken Jennings, John Stahl-Wert</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td><img src="https://m.media-amazon.com/images/I/71VJDPxxJKL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Relevant Search: With applications for Solr and Elasticsearch</td>
+        <td>English</td>
+        <td>Doug Turnbull, John Berryman</td>
+        <td>Technical</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td><img src="https://m.media-amazon.com/images/I/41p4nH1clqL._AC_UY327_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Throwing the Elephant - Zen and the art of managing up</td>
+        <td>English</td>
+        <td>Stanley Bing</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/en/0/04/No_Greater_Love_%28novel%29.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>No Greater Love</td>
+        <td>English</td>
+        <td>Danielle Steel</td>
+        <td>Fiction, Romance</td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td><img src="https://m.media-amazon.com/images/I/31U1Qg0o07L._AC_UY240_FMwebp_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Inner Game of Tennis by Gallwey</td>
+        <td>English</td>
+        <td>W. Timothy</td>
+        <td>Self Help</td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td><img src="https://m.media-amazon.com/images/I/61I7dJaVpnL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Fahrenheit 451</td>
+        <td>English</td>
+        <td>Ray Bradbury</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td><img src="https://m.media-amazon.com/images/I/217cTa+9ZZL._AC_UY218_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>If Tomorrow Comes</td>
+        <td>English</td>
+        <td>Sidney Sheldon</td>
+        <td>Fiction, Thriller</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td><img src="https://m.media-amazon.com/images/I/71MZRMJ+RCL._AC_UY327_QL65_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>The Long Road Home: A Novel</td>
+        <td>English</td>
+        <td>Danielle Steel</td>
+        <td>Fiction, Romance</td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td><img src="https://i.ebayimg.com/images/g/AWMAAOSwqEhjYnUl/s-l1600.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>Master of the Game</td>
+        <td>English</td>
+        <td>Sidney Sheldon</td>
+        <td>Fiction, Thriller</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td><img src="https://m.media-amazon.com/images/I/91a9lvoB5zL._AC_UY218_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>సాయంకాలమైంది (Sayamkaalamaindi)</td>
+        <td>Telugu</td>
+        <td>Gollapudi Maruthi Rao/గొల్లపూడి మారుతీరావు</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td><img src="https://m.media-amazon.com/images/I/71qxW04Sc4L._AC_UY218_.jpg" alt="71qxW04Sc4L"></td>
+        <td>అంతర్ముఖం (Antharmukham)</td>
+        <td>Telugu</td>
+        <td>Yendaamoori veerrendranāth/యండమూరి వీరేంద్రనాథ్</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td><img src="https://m.media-amazon.com/images/I/91ctDWQL3oL._AC_UL320_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>వెన్నెల్లో ఆడపిల్ల (Vennello Aadapilla)</td>
+        <td>Telugu</td>
+        <td>Yendaamoori veerrendranāth/యండమూరి వీరేంద్రనాథ్</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td><img src="https://m.media-amazon.com/images/I/61fGgYq7FCL._AC_UY218_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>ప్రేమ (Prema)</td>
+        <td>Telugu</td>
+        <td>Yendaamoori veerrendranāth/యండమూరి వీరేంద్రనాథ్</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td><img src="https://m.media-amazon.com/images/I/A1J-3qt4NML._AC_UL320_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>పాకుడు రాళ్లు (Pakudu Rallu)</td>
+        <td>Telugu</td>
+        <td>Ravuri Bharadwaja/ రావూరి భారద్వాజ</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td><img src="https://m.media-amazon.com/images/I/81Pun7l9pYL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>దేవరకొండ బాలగంగాధర్ తిలక్ - లభ్య రచనల సంకలనం (Devarakonda Balagangadhar Tilak - Labhya Rachanala Sankalanam)</td>
+        <td>Telugu</td>
+        <td>Devarakonda Balagangadhar Tilak/దేవరకొండ బాలగంగాధర్ తిలక్</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td><img src="https://t.infibeam.com/img/book/7488847/41/ea/telugupedhakathalu.jpg.efc5a041ea.999x600x550.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>తెలుగు పెద్ద కథలు (Telugu Pedda Kathalu)</td>
+        <td>Telugu</td>
+        <td>Mohammed Kadhir Babu</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td><img src="https://m.media-amazon.com/images/I/818XeIESOHL._AC_UY218_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>అనుభవాలు-జ్ఞాపకాలు (Anubhavalu- Gnapakalu)</td>
+        <td>Telugu</td>
+        <td>Sri Padha Subrahmanaya Sastry/ శ్రీపాద సుబ్రమణ్య శాస్త్రి</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td><img src="https://m.media-amazon.com/images/I/71oMPStyqjL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>గంథం యాజ్ఞవల్క్య శర్మ కథలు (Gandham Yagnavalya Sharma Kathalu)</td>
+        <td>Telugu</td>
+        <td>Gandham Yagnavalya Sharma/గంథం యాజ్ఞవల్క్య శర్మ</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td><img src="https://m.media-amazon.com/images/I/71JF-7LDJdL._SL1500_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>కథా సుగంధాలు (Kathasugandhalu)</td>
+        <td>Telugu</td>
+        <td>Gandham Nagaraju/గంథం నాగరాజు</td>
+        <td>Fiction</td>
+      </tr>
+      <tr>
+        <td>42</td>
+        <td><img src="https://m.media-amazon.com/images/I/71JF-7LDJdL._SL1500_.jpg" alt="Book Cover" class="cover-image"></td>
+        <td>శ్రీరమణ భాషణములు (Sri Ramana Bhashanamulu)</td>
+        <td>Telugu</td>
+        <td>Sri Ramanananda Saraswathi, Ramachandra Koundinya, Sudheer</td>
+        <td>Fiction</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
