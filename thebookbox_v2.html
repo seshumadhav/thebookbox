@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport for mobile responsiveness -->
+  <title>The Book Box</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/MpjcHWt/TBB-Academy-Favicon-300x300-1.png">
+  <style>
+    body {
+      font-family: cnn_sans_display, "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, Utkal, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      padding: 0;
+      box-sizing: border-box;
+      /* Ensures padding and margin are included in total width/height */
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      font-size: 1.8em;
+      /* Adjusted for better mobile readability */
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      /* Full width for responsiveness */
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      /* Center the table */
+      overflow-x: auto;
+      /* Enable horizontal scrolling on small screens */
+      display: block;
+      /* Block display for scrolling */
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      font-size: 14px;
+      /* Adjusted font size for mobile */
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+
+
+    /* Style for the cover image */
+    .cover-image {
+      width: 100px;
+      /* Set a fixed width */
+      height: 100px;
+      /* Set a fixed height */
+      object-fit: cover;
+      /* Ensure the image covers the area while maintaining aspect ratio */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      /* Stack items vertically on small screens */
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-link {
+      font-size: 16px;
+      color: blue;
+      text-decoration: underline;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5em;
+        /* Responsive heading size */
+      }
+
+      th,
+      td {
+        font-size: 12px;
+        /* Smaller font size for mobile */
+        padding: 8px;
+        /* Reduced padding for tighter layout */
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Welcome to The Book Box</h1>
+  <div class="container">
+    If you want to borrow a book, please submit
+    <a href="https://forms.gle/pyM2FgBjWj2F9EVg7" target="_blank" class="form-link">this form</a>
+  </div>
+  <div id="table-container"></div>
+
+  <script>
+    const csvData = `
+Book ID,Available?,Book Name,Author,Book Tier,Owner,Language,Img Src,Link
+E001,✓,The Daily Stoic,"Ryan Holiday, Stephen Hanselman",Tier 2,The Book Box,English,https://tinyurl.com/2p9na4hh,
+E002,✓,Atlas Shrugged,Ayn Rand,Tier 1,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1405868167i/662.jpg,
+E003,✓,Radical Acceptance: Embracing Your Life With the Heart of a Buddha,Tara Brach,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/815ocIr9qWL._AC_UY327_FMwebp_QL65_.jpg,
+E004,✓,Manhunt: The Ten-Year Search for Bin Laden - from 9-11 to Abbottabad,"Peter L. Bergen, Mark Deakins",Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/81KIGlHCfpL._AC_UY327_FMwebp_QL65_.jpg,
+E005,✓,The Fred Factor: How Passion in Your Work and Life Can Turn the Ordinary into the Extraordinary,Mark Sanborn and John C. Maxwell,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/71s3F6OMm8L._AC_UY327_FMwebp_QL65_.jpg,
+E006,✓,How to Argue and Win Every Time,Gerry Spence,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/718j0OG0SgL._SL1500_.jpg,
+E007,✓,Elements of Influence: The Art of Getting Others to Follow Your Lead,Terry R.Bacon,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/61bHtvQAsXL._AC_UY327_FMwebp_QL65_.jpg,
+E008,✓,Nonviolent Communication: A Language of Life: Life-Changing Tools for Healthy Relationships (Nonviolent Communication Guides),Marshall B. Rosenberg,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/61tHUIggQaL._AC_UY327_FMwebp_QL65_.jpg,
+E009,✓,"Game Change: Obama and the Clintons, McCain and Palin, and the Race of a Lifetime",John Heilemann and Mark Halperin,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/61LxQxMVa7L._AC_UY327_FMwebp_QL65_.jpg,
+E010,✓,Just Listen: Discover the Secret to Getting Through to Absolutely Anyone,Mark Goulston,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/71lJ5i8p+bL._AC_UY327_FMwebp_QL65_.jpg,
+E011,✓,Grit: The Power of Passion and Perseverance,Angela Duckworth,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/71uZIWQx+tL._AC_UY327_FMwebp_QL65_.jpg,
+E012,✓,Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones,James Clear,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/71F4+7rk2eL._AC_UY327_FMwebp_QL65_.jpg,
+E013,✓,The Art of Thinking Clearly,Rolf Dobelli,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/71X49rkdj1L._AC_UY327_FMwebp_QL65_.jpg,
+E014,✓,"Better Than Before: What I Learned About Making and Breaking Habits--to Sleep More, Quit Sugar, Procrastinate Less, and Generally Build a Happier Life",Gretchen Rubin,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/81CeBeTmw8L._AC_UY327_FMwebp_QL65_.jpg,
+E015,✓,Nonviolent Communication: A Language of Life,Marshall B. Rosenberg,Tier 2,The Book Box,English,"https://m.media-amazon.com/images/I/51p5r-VNR2L._AC_UF1000,1000_QL80_.jpg",
+E016,✓,Thinking in Systems: A Primer,Donella H. Meadows,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/810yZQefYzL._AC_UY327_FMwebp_QL65_.jpg,
+E017,✓,The Happiness Project,Gretchen Rubin,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/81qvmSdwQiL._AC_UY327_FMwebp_QL65_.jpg,
+E018,✓,Radical Acceptance: Embracing Your Life With the Heart of a Buddha,Tara Brach,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/815ocIr9qWL._AC_UY327_FMwebp_QL65_.jpg,
+E019,✓,The 4 Disciplines of Execution: Achieving Your Wildly Important Goals,Chris McChesney,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1564338047i/13260184.jpg,
+E020,✓,NurtureShock: New Thinking About Children,"Po Bronson, Ashley Merryman",Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/61tllT7LU8L._AC_UY327_FMwebp_QL65_.jpg,
+E021,✓,HBR Guide to Dealing with Conflict,Amy Gallo,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/61MyyZ3V5QL._AC_UY327_FMwebp_QL65_.jpg,
+E022,✓,The Broker: A Novel,John Grisham,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/71GhNB1ZhIL._AC_UY327_FMwebp_QL65_.jpg,
+E023,✓,"The Serving Leader: Five Powerful Actions that Will Transform Your Team, Your Business, and Your Community","Ken Jennings, John Stahl-Wert",Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/41xrwn3RFdL._AC_UY327_FMwebp_QL65_.jpg,
+E024,✓,Relevant Search: With applications for Solr and Elasticsearch,"Doug Turnbull, John Berryman",Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/71VJDPxxJKL._AC_UY327_FMwebp_QL65_.jpg,
+E025,✓,Throwing the Elephant,Stanley Bing,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/41p4nH1clqL._AC_UY327_FMwebp_QL65_.jpg,
+E026,✓,No Greater Love,Danielle Steel,Tier 1,The Book Box,English,https://upload.wikimedia.org/wikipedia/en/0/04/No_Greater_Love_%28novel%29.jpg,
+E027,✓,The Inner Game of Tennis by Gallwey,W. Timothy,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/31U1Qg0o07L._AC_UY240_FMwebp_QL65_.jpg,
+E028,✓,Fahrenheit 451,Ray Bradbury,Tier 1,The Book Box,English,"https://m.media-amazon.com/images/I/61I7dJaVpnL._AC_UF1000,1000_QL80_.jpg",
+E029,✓,If Tomorrow Comes,Sidney Sheldon,Tier 2,The Book Box,English,https://m.media-amazon.com/images/I/217cTa+9ZZL._AC_UY218_.jpg,
+E030,✓,The Long Road Home: A Novel,Danielle Steel,Tier 1,The Book Box,English,https://m.media-amazon.com/images/I/71MZRMJ+RCL._AC_UY327_QL65_.jpg,
+E031,✓,Master of the Game,Sidney Sheldon,Tier 1,The Book Box,English,https://i.ebayimg.com/images/g/AWMAAOSwqEhjYnUl/s-l1600.jpg,
+E032,✓,The Book Of Life,Jiddu Krishnamurthy,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1368426674i/143880.jpg,https://www.amazon.com/Book-Life-Daily-Meditations-Krishnamurti/dp/0060648791
+E033,✓,Forks in the Road,Dr. C. Rangarajan,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667439710i/63209905.jpg,https://www.amazon.com/Forks-Road-Days-RBI-Beyond/dp/0670096997
+E034,✓,The Intangibles of Leadership,Richard A. Davis,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348978712i/8734548.jpg,https://a.co/d/homO6hv
+E035,✓,Just a Mercenary: Notes from My Life and Career,Duvvuri Subbarao,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1711994716i/210623365.jpg,https://www.amazon.com/Just-Mercenary-Notes-Life-Career/dp/0143467298
+E036,✓,1991: How P. V. Narasimha Rao Made History,Sanjaya Baru,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474915185i/32259187.jpg,https://www.amazon.com/1991-How-Narasimha-Made-History/dp/9384067687
+E037,✓,Advice and Dissent: My Life in Public Service,Y.V.Reddy,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1498529473i/35522251.jpg,https://www.amazon.com/Advice-Dissent-Life-Public-Service/dp/9353020212
+E038,✓,You are an Amazing Girl,Nadia Ross,Tier 1,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639276462i/59804615.jpg,https://www.amazon.com/You-are-Amazing-Girl-Self-Confidence/dp/B09LB1QFP6
+E039,✓,On Leaders and Icons: From Jinnah to Modi, Kuldip Nayar,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1549686433i/43896709.jpg,https://www.amazon.com/Leaders-Icons-Jinnah-Modi/dp/9388326539
+E040,✓,11 Rules For Life: Secrets to Level Up,Chetan Bhagat ,Tier 2,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1718715842i/205899889.jpg,https://a.co/d/iVlGRND
+E041,✓,Predictably Irrational: The Hidden Forces That Shape Our Decisions,Dr. Dan Ariely,Tier 1,The Book Box,English,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1255573980i/1713426.jpg,https://www.amazon.com/Predictably-Irrational-Revised-Expanded-Decisions/dp/0061353248
+T001,✓,సాయంకాలమైంది (Sayamkaalamaindi),Gollapudi Maruthi Rao/ గొల్లపూడి మారుతీరావు,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/91a9lvoB5zL._AC_UY218_.jpg,
+T002,✓,అంతర్ముఖం (Antharmukham),Yendaamoori veerrendranāth/యండమూరి వీరేంద్రనాథ్,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/71qxW04Sc4L._AC_UY218_.jpg,
+T003,✓,వెన్నెల్లో ఆడపిల్ల (Vennello Aadapilla),Yendaamoori veerrendranāth/ యండమూరి వీరేంద్రనాథ్,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/91ctDWQL3oL._AC_UL320_.jpg,
+T004,✓,ప్రేమ (Prema),Yendaamoori veerrendranāth/ యండమూరి వీరేంద్రనాథ్,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/61fGgYq7FCL._AC_UY218_.jpg,
+T005,✓,పాకుడు రాళ్లు (Pakudu Rallu),Ravuri Bharadwaja/ రావూరి భరద్వాజ,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/A1J-3qt4NML._AC_UL320_.jpg,
+T006,✓,దేవరకొండ బాలగంగాధర్ తిలక్- లభ్య రచనల సంకలనం (Devarakonda Balagangadhar Tilak - Labhya Rachanala Sankalanam),Devarakonda Balagangadhar Tilak/ దేవరకొండ బాలగంగాధర్ తిలక్,Tier 1,The Book Box,Telugu,"https://m.media-amazon.com/images/I/81Pun7l9pYL._AC_UF1000,1000_QL80_.jpg",
+T007,✓,తెలుగు పెద్ద కథలు (Telugu Pedda Kathalu) ,Mahamadh Kadhar Babu/ మహ్మద్ ఖదీర్ బాబు,Tier 1,The Book Box,Telugu,https://t.infibeam.com/img/book/7488847/41/ea/telugupedhakathalu.jpg.efc5a041ea.999x600x550.jpg,https://tinyurl.com/ycysrfwp
+T008,✓,అనుభవాలు - జ్ఞాపకాలూనూ (Anubhavalu- Gnapakalunu),Sri Padha Subrahmanaya Sastry/ శ్రీ పాద సుబ్రహ్మణ్య శాస్త్రి,Tier 2,The Book Box,Telugu,https://m.media-amazon.com/images/I/818XeIESOHL._AC_UY218_.jpg,
+T009,✓,గంధం యాజ్ఞవల్క్యశర్మ కథలు (Gandham Yagyavalkya Sarma Kathalu),Gandham yagyavalkya sarma/గంధం యాజ్ఞవల్క్యశర్మ,Tier 1,The Book Box,Telugu,"https://m.media-amazon.com/images/I/71oMPStyqjL._AC_UF1000,1000_QL80_.jpg",
+T010,✓,కథాసుగంధాలు (Kathasugandhalu),Gandham Nagaraju/గంధం నాగరాజు,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/71JF-7LDJdL._SL1500_.jpg,
+T011,✓,శ్రీరమణ భాషణములు (Sri Ramana Bhashanamulu),"Sri Ramanananda Saraswathi, Ramachandra Koundinya, Sudheer",Tier 2,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1495213057i/35172664.jpg,https://pustakanidhi.com/books/sri-ramana-bhashanamulu/
+T012,✓,నా జీవిత యాత్ర (Naa Jeevita Yatra),Tanguturi Prakasham Panthulu,Tier 2,The Book Box,Telugu,https://upload.wikimedia.org/wikipedia/te/thumb/c/c9/%E0%B0%A8%E0%B0%BE_%E0%B0%9C%E0%B1%80%E0%B0%B5%E0%B0%BF%E0%B0%A4_%E0%B0%AF%E0%B0%BE%E0%B0%A4%E0%B1%8D%E0%B0%B0.jpg/400px-%E0%B0%A8%E0%B0%BE_%E0%B0%9C%E0%B1%80%E0%B0%B5%E0%B0%BF%E0%B0%A4_%E0%B0%AF%E0%B0%BE%E0%B0%A4%E0%B1%8D%E0%B0%B0.jpg,https://archive.org/details/in.ernet.dli.2015.391993
+T013,✓,వేయి పడగలు (Veyi Padagalu),Viswanatha Satyanarayana,Tier 2,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1297578329i/10448445.jpg,https://en.wikipedia.org/wiki/Veyi_Padagalu
+T014,✓,అమ్మ కడుపు చల్లగా (ఆత్మకథ) (Amma Kadupu Challaga),Gollapudi Maruthi Rao/ గొల్లపూడి మారుతీరావు,Tier 1,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1410756823i/22617785.jpg,https://www.telugubooks.in/products/amma-kadupu-challaga-athma-katha?srsltid=AfmBOoocCZFgfgkyoE4ukPZzCuZZFFL9fXczXjFO81vowB5t3DO3WG8t
+T015,✓,త్రిపురనేని రామస్వామి సర్వలభ్య రచనలు (Tripuraneni Ramaswamy Sarvalabhya Rachanalu),Tripuraneni Ramaswamy,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/71jNMY4NRNL._SY522_.jpg,https://amzn.in/d/1rL5EI5
+T016,✓,వాడ్రేవు చినవీరభద్రుడు కథలు (Vandrevu Chinaveerabhadrudu Kathalu 1980- 2023),Vandrevu Chinaveerabhadrudu,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/710w71T-sQL._SY522_.jpg,https://tinyurl.com/zhee7h6d
+T017,✓,శ్రీ రమణాశ్రమ లేఖలు (Sri Ramanaasrama Lekhalu),Suri Nagamma,Tier 1,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506953890i/36341155.jpg,https://bookstore.gururamana.org/products/ramanaasrama-lekhalu-telugu/1667740000000072037
+T018,✓,వల్లభ్ భాయ్ పటేల్ జీవిత కథ (Vallabhbhai Patel Jeevitha Katha),Rajmohan Gandhi,Tier 2,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1496413951i/35287054.jpg,https://www.amazon.com/Vallabhbhai-Patel-Raj-Mohan-Gandhi/dp/9383652756
+T019,✓,పూర్ణత్వపు పొలిమేరలో (Purnatvapu Polimeralo),Chembolu Srirama Sastry,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/71-37F2zLeL._SY522_.jpg,https://www.amazon.in/Purnatvapu-Polimeralo-Sirivennela-Seetharama-Sastry/dp/B0C5MW6YKF
+T020,✓,శ్రీ రమణ లీల - భగవాన్ శ్రీ రమణ మహర్షుల జీవితచరిత్ర (Sri Ramana Leela),Krishna Bhikshu,Tier 2,The Book Box,Telugu,https://m.media-amazon.com/images/I/41Ryj0684VL._SY445_SX342_.jpg,https://www.amazon.com/Ramana-Leela-Telugu-Krishna-Bhikshu/dp/B08PC6JHWN
+T021,✓,చాణక్యుడి బోధనలు మరియు సలహాలు (Chanakyudi Bodhanalu Mariyu Salahalu),Aswani Sharma,Tier 1,The Book Box,Telugu,https://www.telugubooks.in/cdn/shop/files/Chanakyudi_bhodanalu_mariyu_salahalu_front_5e473676-fc05-4014-9543-8f9dd53761dd_1024x1024.jpg?v=1727435677,https://www.telugubooks.in/products/chanakyudi-bodhanalu-mariyu-salahalu?_pos=1&_sid=c8d671913&_ss=r
+T022,✓,కొమ్మ కొమ్మకో సన్నాయి (Komma Kommako Sannayi),Veturi Sundar Rammurthy,Tier 1,The Book Box,Telugu,https://www.telugubooks.in/cdn/shop/files/komma_komma_ko_sannayi8663_d06b6bc7-5d62-41d5-aad9-5587dfa59ec5_1024x1024.jpg?v=1729150302,https://www.telugubooks.in/products/komma-kommako-sannayi?_pos=1&_sid=a413c5545&_ss=r
+T023,✓,నీ సహజ స్థితి లో ఉండు (Nee Sahaja Sthithilo Undu),Devid Godman,Tier 1,The Book Box,Telugu,https://pustakanidhi.com/wp-content/uploads/2022/12/20220909_095343-662x1024.jpg,https://pustakanidhi.com/books/nee-sahajasthitilo-undu/
+T024,✓,నేను - మీ బ్రహ్మానందం (Nenu),Brahmanandam ,Tier 2,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1705215109i/205348436.jpg,https://www.amazon.com/Nenu-Atmakatha-Telugu-Brahmanandam/dp/B0CQYLL2W2
+T025,✓,ఇన్నర్ ఇంజినీరింగ్ యోగం ఆనంద మార్గం (Inner Engineering A Yogi's Guide To Joy),Sadguru,Tier 2,The Book Box,Telugu,https://cdn.exoticindia.com/images/products/thumbnails/t800x600/books-2019-003/bae306.webp,https://www.exoticindiaart.com/book/details/inner-engineering-yogi-s-guide-to-joy-telugu-bae306/
+T026,✓,నా రమణాశ్రమ జీవితం (Naa Ramanasrama Jeevitam),Suri Nagamma,Tier 2,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1696997226i/93349213.jpg,https://www.amazon.com/Ramanasrama-Jeevitam-Telugu-Suri-Nagamma/dp/B09MBSWJ5Q
+T027,✓,ప్రేమ లేఖలు (Premalekhalu),Chalam (Gudipati Venkatachalam),Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/61uCbfkXjAL._SY522_.jpg,https://www.amazon.in/Premalekhalu-Gudipati-Venkata-Chalam/dp/B00HWWKFO0
+T028,✓,జీవన దర్శనం (Jeevana Darshanam),Jiddu Krishnamurthy,Tier 1,The Book Box,Telugu,https://m.media-amazon.com/images/I/71y3iB4DZML._SY522_.jpg,https://www.amazon.in/Jiddu-Krishnamurthy-Jeevanadarsanam-%E0%B0%9C%E0%B1%80%E0%B0%B5%E0%B0%BF%E0%B0%A4%E0%B0%BE%E0%B0%A6%E0%B0%B0%E0%B1%8D%E0%B0%B6%E0%B0%82-%E0%B0%9C%E0%B0%BF%E0%B0%A1%E0%B1%8D%E0%B0%A1%E0%B1%81%E0%B0%95%E0%B1%83%E0%B0%B7%E0%B1%8D%E0%B0%A3%E0%B0%AE%E0%B1%82%E0%B0%B0%E0%B1%8D%E0%B0%A4%E0%B0%BF/dp/9382203834/ref=sr_1_5?dib=eyJ2IjoiMSJ9.c0B0cLtFv9yYeoCgaUyeg7XDJMu3aqdBZYvUznbMS0v2oVPgKd-qMlZNgmgo0SqTa3_xsb2gR3BaLqo9UBSK9ytNs_95E1Rr9rMgjerpwBchGvN3q6f66Z3xL_71gWGnnVMrPjQ1qx2Pfnplky3sDR2zUTVjHaL93jT6-t57kNWXcVroNiGMKTCdcfQGv4cm.RDbZmA8HMcRuF9MAoP7FQQ5L3NXD1FMLEWlqGtfj27k&dib_tag=se&qid=1730774625&refinements=p_27%3AJiddu+Krishnamurthy&s=books&sr=1-5
+T029,✓,వడ్లగింజలు (Vadla Ginjalu),Sri Padha Subrahmanaya Sastry/ శ్రీ పాద సుబ్రహ్మణ్య శాస్త్రి,Tier 1,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1470320349i/31349174.jpg,https://www.goodreads.com/book/show/31349174-vadla-ginjalu
+T030,✓,మార్గదర్శి (Margadarsi),Sri Padha Subrahmanaya Sastry/ శ్రీ పాద సుబ్రహ్మణ్య శాస్త్రి,Tier 1,The Book Box,Telugu,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1647580247i/24763920.jpg,https://www.amazon.in/Margadarsi-Sripada-Subrahmanya-Shastri/dp/B00HWWCCK0
+`.trim();
+
+
+    function parseCsvToArrayOfMaps(csv) {
+      const rows = csv.split('\n');
+      const headers = rows[0].split(',').map(header => header.trim());
+      const dataLines = rows.slice(1);
+
+      return dataLines.map(line => {
+        const rowData = parseCsvLine(line);
+        const rowObject = {};
+
+        headers.forEach((header, index) => {
+          rowObject[header] = rowData[index];
+        });
+
+        return rowObject;
+      });
+    }
+
+    // Function to parse a single CSV line, handling quoted cells
+    function parseCsvLine(line) {
+      const regex = /("([^"]|"")*"|[^,]+)/g; // Regex to match quoted or unquoted values
+      const matches = line.match(regex);
+      return matches ? matches.map(match => match.replace(/(^"|"$)/g, '').replace(/""/g, '"').trim()) : [];
+    }
+
+    function createTableFromData(dataArray) {
+
+      // Create table headers
+      const headers = Object.keys(dataArray[0]);
+      const table = document.createElement('table');
+      table.setAttribute('border', '1'); // Set the border attribute
+      const headerRow = table.insertRow();
+
+      const sno_heading = document.createElement('th');
+      sno_heading.textContent = "#";
+      headerRow.appendChild(sno_heading);
+
+      const cover_heading = document.createElement('th');
+      cover_heading.textContent = "Cover";
+      headerRow.appendChild(cover_heading);
+
+      const title_heading = document.createElement('th');
+      title_heading.textContent = "Title";
+      headerRow.appendChild(title_heading);
+
+      const author_heading = document.createElement('th');
+      author_heading.textContent = "Author(s)";
+      headerRow.appendChild(author_heading);
+
+      const language_heading = document.createElement('th');
+      language_heading.textContent = "Language";
+      headerRow.appendChild(language_heading);
+
+      for (let i = 0; i < dataArray.length; i++) {
+        let row = dataArray[i];
+        const tableRow = table.insertRow();
+
+        const td_sno = document.createElement("td");
+        td_sno.textContent = i + 1;
+        tableRow.appendChild(td_sno);
+
+        const td_cover = document.createElement("td");
+        td_cover.innerHTML = "<img src=" + dataArray[i]['Img Src'] + " alt='Book Cover' class='cover-image'>"
+        tableRow.appendChild(td_cover);
+
+        const td_title = document.createElement("td");
+        td_title.textContent = dataArray[i]['Book Name'];
+        tableRow.appendChild(td_title);
+
+        const td_author = document.createElement("td");
+        td_author.textContent = dataArray[i]['Author'];
+        tableRow.appendChild(td_author);
+
+        const td_language = document.createElement("td");
+        td_language.textContent = dataArray[i]['Language'];
+        tableRow.appendChild(td_language);
+      }
+
+      return table;
+    }
+
+    // Usage
+    const dataArray = parseCsvToArrayOfMaps(csvData);
+    console.log(dataArray);
+
+    const tableContainer = document.getElementById('table-container');
+    const table = createTableFromData(dataArray);
+    tableContainer.appendChild(table);
+  </script>
+</body>
+
+</html>
